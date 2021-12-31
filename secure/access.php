@@ -179,6 +179,33 @@ class access {
         return $returnArray;
         
     }
+
+
+
+    // updates bio in the server
+    function updateBio($id, $bio){
+
+        // declaring sql command
+        $sql = 'UPDATE users SET bio=? WHERE id=?';
+
+        // prepare SQL command for execute
+        $statement = $this->conn->prepare($sql);
+
+        // if error occured while preparing the statement to be exec
+        if(!$statement){
+            throw new Exception($statement->error);
+        }
+
+        // assign params to the prepapred SQL Command
+        $statement->bind_param('si', $bio, $id);
+
+        // access result of exec
+        $result = $statement->execute();
+
+        // returning result of exec
+        return $result;
+
+    }
     
     
 }

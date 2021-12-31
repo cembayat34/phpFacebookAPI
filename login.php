@@ -52,7 +52,7 @@ if ($user) {
         $return['gender'] = $user['gender'];
         $return['cover'] = $user['cover'];
         $return['ava'] = $user['ava'];
-        //$return['bio'] = $user['bio'];
+        $return['bio'] = $user['bio'];
 
       
         

@@ -81,6 +81,7 @@ if ($user) {
     $return['gender'] = $user['gender'];
     $return['cover'] = $user['cover'];
     $return['ava'] = $user['ava'];
+    $return['bio'] = $user['bio'];
 } else {
     $return['status'] = '400';
     $return['message'] = 'Could not complete the process';

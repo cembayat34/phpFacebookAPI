@@ -78,6 +78,7 @@ if (!empty($user)) {
         $return['gender'] = $gender;
         $return['ava'] = $user['ava'];
         $return['cover'] = $user['cover'];
+        $return['bio'] = $user['bio'];
     
     // result is negative - couldn't insert
     } else {
