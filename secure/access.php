@@ -206,6 +206,30 @@ class access {
         return $result;
 
     }
+
+    // inserting post into table/database
+    function insertPost($user_id, $text, $picture) {
+        
+        // sql statement to be ran
+        $sql = 'INSERT INTO posts SET user_id=?, text=?, picture=?';
+        
+        // preparing SQL command for the execution
+        $statement = $this->conn->prepare($sql);
+        
+        // show error if statement couldn't be executed
+        if (!$statement) {
+            throw new Exception($statement->error);
+        }
+        
+        // replacing ? with the variables
+        $statement->bind_param('iss', $user_id, $text, $picture);
+        
+        // execute statement and keep the result in $result variable
+        $result = $statement->execute();
+        
+        return $result;
+        
+    }
     
     
 }
