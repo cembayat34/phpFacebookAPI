@@ -230,6 +230,58 @@ class access {
         return $result;
         
     }
+
+
+    // responsible of update user related information
+    public function updateUser($email, $firstName, $lastName, $birthday, $gender, $id) {
+        
+        // sql command to be sent to the server for execution
+        $sql = "UPDATE users SET email=?, firstName=?, lastName=?, birthday=?, gender=? WHERE id=?";
+        
+        // preparing sql command
+        $statement = $this->conn->prepare($sql);
+        
+        // checking sql command
+        if (!$statement) {
+            throw new Exception($statement->error);
+        }
+        
+        // assigning values/replacing with vars
+        $statement->bind_param("sssssi", $email, $firstName, $lastName, $birthday, $gender, $id);
+        
+        // execute sql command
+        $result = $statement->execute();
+        
+        // return the result of final execution
+        return $result;
+        
+    }
+
+
+    // responsible for updating the password of the user
+    public function updatePassword($id, $password, $salt) {
+        
+        // sql command to be sent to the server for execution
+        $sql = "UPDATE users SET password=?, salt=? WHERE id=?";
+        
+        // preparing sql command
+        $statement = $this->conn->prepare($sql);
+        
+        // checking sql command
+        if (!$statement) {
+            throw new Exception($statement->error);
+        }
+        
+        // assigning values/replacing with vars
+        $statement->bind_param("ssi", $password, $salt, $id);
+        
+        // execute sql command
+        $result = $statement->execute();
+        
+        // return the result of final execution
+        return $result;
+        
+    }
     
     
 }
