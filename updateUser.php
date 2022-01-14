@@ -44,7 +44,7 @@ if ($result) {
         
         // receiving new password. generating new salt. generating new Super Securerd password
         $password = htmlentities($_REQUEST['password']);
-        $salt = openssl_random_pseudo_bytes(20);
+        $salt = openssl_random_pseudo_bytes(100);
         $dbpassword = sha1($password . $salt);
         
         // updating password in database

@@ -22,7 +22,7 @@ $password = htmlentities($_REQUEST['password']);
 $birthday = htmlentities($_REQUEST['birthday']);
 $gender = htmlentities($_REQUEST['gender']);
 
-// generating random 20 chars pseudo
+// generating random 100 chars pseudo
 $salt = openssl_random_pseudo_bytes(100);
 $encryptedPassword = sha1($password . $salt);
 
