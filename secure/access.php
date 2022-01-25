@@ -282,6 +282,49 @@ class access {
         return $result;
         
     }
+
+
+    public function selectPost($id, $offset, $limit) {
+
+        // array to store the information / posts
+        $return = array();
+
+        $sql = "SELECT 
+                posts.id, 
+                posts.user_id, 
+                posts.text, 
+                posts.picture, 
+                posts.date_created,
+                users.firstName,
+                users.lastName,
+                users.cover,
+                users.ava
+                FROM posts
+                LEFT JOIN users ON users.id = posts.user_id
+                WHERE posts.user_id = $id
+                ORDER BY posts.date_created DESC LIMIT $limit OFFSET $offset";
+
+        // preparing sql command to be exec-d and then we store the result of preparation in statement var
+        $statement = $this->conn->prepare($sql);
+
+        // show error occured while preparing the sql command for exec-tion
+        if (!$statement) {
+            throw new Exception($statement -> error);
+        }
+
+        // execute sql command
+        $statement -> execute();
+
+        // retreive results from the qury / sql
+        $result = $statement -> get_result();
+
+        // all rows (posts) are stored in $result. we are fetching every row one by one. and assigning it to $return var
+        while ($row = $result -> fetch_assoc()) {
+            $return[] = $row; 
+        }
+
+        return $return;
+    }
     
     
 }
